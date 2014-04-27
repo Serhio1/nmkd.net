@@ -1,0 +1,3 @@
+outPdf:
+    pattern:  /1
+    defaults: { _controller: NMKDPdfBundle:Pdf:outPdf }

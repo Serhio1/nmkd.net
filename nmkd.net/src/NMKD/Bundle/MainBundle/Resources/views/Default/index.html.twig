@@ -1,0 +1,8 @@
+{% extends "NMKDMainBundle::base.html.twig" %}
+
+{% block main %}
+{{ form_start(form) }}
+{{ form_widget(form.questions) }}
+{{ form_widget(form.next) }}
+{{ form_end(form) }}
+{% endblock main %}

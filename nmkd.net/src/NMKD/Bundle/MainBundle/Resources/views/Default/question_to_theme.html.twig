@@ -1,0 +1,96 @@
+{% extends "NMKDMainBundle::base.html.twig" %}
+
+
+{% block main %}
+
+<link rel="stylesheet" href="//code.jquery.com/ui/1.10.4/themes/smoothness/jquery-ui.css">
+<script src="//code.jquery.com/jquery-1.9.1.js"></script>
+<script src="//code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+<style>
+    #sortable1, #sortable2 { list-style-type: none; margin: 0; padding: 0 0 2.5em; float: left; margin-right: 10px; }
+    #sortable1 li, #sortable2 li { margin: 5px; padding: 5px; font-size: 1.2em; }
+</style>
+
+<table border="1px">
+  <tr>
+    <td>Questions</td>
+    <td>Themes</td>
+  </tr>
+  <tr>
+    <ul id="sortContainer" class="hidden">
+      <li>
+        <td style="width: 50%">
+          <ul id="sortable1" class="connectedSortable">
+          {% for key,question in questionList %}
+            <li id="{{ key }}" class="ui-state-default question">{{ question }}</li>
+          {% endfor %}
+          </ul>
+        </td>
+
+        <td style="width: 50%">
+          <ul id="sortable2" class="connectedSortable">
+          {% for key,theme in themes %}
+            <li id="{{ key }}" class="ui-state-highlight theme">{{ theme }}</li>
+          {% endfor %}
+          </ul>
+        </td>
+      </li>
+    </ul>
+  </tr>
+</table>
+
+{{ form_start(form) }}
+{{ form_widget(form.next) }}
+{{ form_end(form) }}
+
+
+
+{% endblock main %}
+
+{% block scripts %}
+<script>
+    $(function() {
+        $( "#sortable1, #sortable2" ).sortable({
+            connectWith: ".connectedSortable"
+        }).disableSelection();
+    });
+</script>
+<script>
+    (function($){
+        $('body').on('click','#form_next',function(){
+            var data = {};
+
+
+
+            /*if($('#sortable1').children().length){
+                alert('вы должны определить все вопросы');
+                $('form[name="form"]').submit(function(){
+                    return false;
+                });
+            }*/
+            $("#sortable2 li").each(function (i) {
+                if($(this).hasClass('question')){
+                    theme = $(this).prevAll( '.theme:first' );
+                    data[$(this).attr('id')] = theme.attr('id');
+                }
+            });
+            $('#form_data').val(serialize(data));
+
+            function serialize(obj) {
+                var str = '';
+                for (i in obj){
+                    if(typeof(obj[i])==="object"){
+                        str += i+':{'+serialize(obj[i])+'},';
+                    } else {
+                        str += (i + ':' + obj[i] + ',');
+                    }
+                }
+
+                return str;
+            }
+
+
+        })
+    }(jQuery))
+</script>
+{% endblock scripts %}

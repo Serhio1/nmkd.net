@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>НМКД</title>
+
+    {% stylesheets 'bundles/nmkdmain/css/*' filter='cssrewrite' %}
+    <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="brand" href="#">НМКД</a>
+            <div class="nav-collapse">
+                <ul id="AjEMenu" class="nav">
+                    <li><a href="#">Главная</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>
+
+    <div class="container">
+        <div class="offset"></div>
+
+    {% block main %}
+    {% endblock main %}
+    </div>
+
+    {% block scripts %}
+    {% endblock scripts %}
+
+</body>
+</html>

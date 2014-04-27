@@ -1,0 +1,8 @@
+nmkd_pdf:
+    resource: "@NMKDPdfBundle/Resources/config/routing.yml"
+    prefix:   /pdf
+
+nmkd_main:
+    resource: "@NMKDMainBundle/Resources/config/routing.yml"
+    prefix:   /
+

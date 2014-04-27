@@ -1,0 +1,15 @@
+nmkd_main_homepage:
+    pattern:  /
+    defaults: { _controller: NMKDMainBundle:Default:index }
+
+set_theme_questions:
+    pattern:  /themes
+    defaults: { _controller: NMKDMainBundle:Default:setThemes }
+
+set_question_types:
+    pattern:  /types
+    defaults: { _controller: NMKDMainBundle:Default:setTypes }
+
+question_to_theme:
+    pattern:  /question-theme/{type}
+    defaults: { _controller: NMKDMainBundle:Default:questionToTheme, type: 'lection' }

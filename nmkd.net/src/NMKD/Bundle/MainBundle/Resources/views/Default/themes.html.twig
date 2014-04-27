@@ -1,0 +1,24 @@
+{% extends "NMKDMainBundle::base.html.twig" %}
+
+
+{% block main %}
+
+    {{ form_start(form) }}
+<table border="1px">
+  <tr>
+    <td>№</td>
+    <td>Questions</td>
+    <td>Themes</td>
+  </tr>
+{% for key,question in questions %}
+  <tr>
+    <td>{{ key }}</td>
+    <td> {{ question }}</td>
+    <td>{{ form_widget(form[key]) }}</td>
+  </tr>
+{% endfor %}
+</table>
+    {{ form_widget(form.next) }}
+    {{ form_end(form) }}
+
+{% endblock main %}

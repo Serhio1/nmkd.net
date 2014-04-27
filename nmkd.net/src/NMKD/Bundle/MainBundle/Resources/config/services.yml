@@ -1,0 +1,7 @@
+parameters:
+#    nmkd_main.example.class: NMKD\Bundle\MainBundle\Example
+
+services:
+#    nmkd_main.example:
+#        class: %nmkd_main.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
